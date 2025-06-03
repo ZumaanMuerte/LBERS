@@ -32,6 +32,12 @@
                         <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                             {{ __('User Dashboard') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('user.earthquakes.index')" :active="request()->routeIs('user.earthquakes.index')">
+                            {{ __('Earthquakes') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('user.winds.index')" :active="request()->routeIs('user.winds.index')">
+                            {{ __('Storms Winds') }}
+                        </x-nav-link>
                     @elseif(Auth::user()->role === 'staff')
                         <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                             {{ __('User') }}

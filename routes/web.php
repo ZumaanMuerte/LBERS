@@ -7,7 +7,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EarthquakeController;
 use App\Http\Controllers\DisasterReportController;
 use App\Http\Controllers\WindController;
-use App\Http\Controllers\HomeController;
 
 // 1) Public “welcome” (unauthenticated) page
 Route::get('/', function () {
@@ -36,11 +35,6 @@ Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
 })->middleware(['auth'])->name('staff.dashboard');
 
-Route::get('/user/dashboard', function () {
-    return view('user.dashboard');
-})->middleware(['auth'])->name('user.dashboard');
-
-
 // 4) (Your other authenticated routes)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class,'edit'])->name('profile.edit');
@@ -49,17 +43,32 @@ Route::middleware('auth')->group(function () {
 });
 
 // Earthquakes
+Route::get('/earthquakes', [EarthquakeController::class, 'userindex'])->name('user.earthquakes.index');
 Route::get('earthquakes/print', [EarthquakeController::class,'print'])->name('earthquakes.print');
 Route::resource('earthquakes', EarthquakeController::class);
 
 Route::resource('accountroles', AccountRoleController::class);
 
 // Winds
+Route::get('/winds', [WindController::class, 'userindex'])->name('winds.index');
 Route::get('winds/print', [WindController::class,'print'])->name('winds.print');
 Route::resource('winds', WindController::class);
+
 
 // Disaster Reports
 Route::get('disaster_reports/print', [DisasterReportController::class,'print'])->name('disaster_reports.print');
 Route::resource('disaster_reports', DisasterReportController::class);
 
+Route::prefix('user')->middleware(['auth'])->name('user.')->group(function () {
+    // User dashboard view
+    Route::get('/dashboard', function () {
+        return view('user.dashboard');
+    })->name('dashboard');
+
+    // User specific routes for earthquakes and winds
+    Route::get('/earthquakes', [EarthquakeController::class, 'userindex'])->name('earthquakes.index');
+    Route::get('/winds', [WindController::class, 'userindex'])->name('winds.index');
+
+    // If you want users to have access to other actions, define those routes explicitly or create a resource with limited methods.
+});
 require __DIR__.'/auth.php';
