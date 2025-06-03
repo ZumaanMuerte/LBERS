@@ -107,10 +107,10 @@
       {{-- OVERLAY CARD (vertically centered, on the right side) --}}
       <div class="relative flex-1 flex items-center justify-end z-10 right-8 p-4">
         <div
-          class="w-100 bg-white bg-opacity-75 backdrop-blur-sm rounded-xl shadow-xl mx-8 p-0"
+          class="w-[600px] bg-white bg-opacity-75 backdrop-blur-sm rounded-xl shadow-xl mx-8 p-0"
           x-data="{ formView: 'signup' }"
         >
-          {{-- Card Header --}}
+           {{-- Card Header --}}
           <div class="bg-indigo-600 px-6 py-4 rounded-t-xl">
             <h3 class="text-xl font-semibold text-black text-center justify-center">
               <span x-show="formView === 'signup'">Sign Up</span>
