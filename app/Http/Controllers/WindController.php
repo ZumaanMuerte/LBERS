@@ -28,7 +28,7 @@ class WindController extends Controller
     /**
      * User: Display a listing of winds (read-only).
      */
-    public function userIndex(Request $request)
+    public function userindex(Request $request)
     {
         $query = Wind::query();
 

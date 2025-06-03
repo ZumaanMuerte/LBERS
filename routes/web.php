@@ -35,6 +35,11 @@ Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
 })->middleware(['auth'])->name('staff.dashboard');
 
+Route::get('/user/dashboard', function () {
+    return view('user.dashboard');
+})->middleware(['auth'])->name('user.dashboard');
+
+
 // 4) (Your other authenticated routes)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class,'edit'])->name('profile.edit');
@@ -58,6 +63,7 @@ Route::resource('winds', WindController::class);
 // Disaster Reports
 Route::get('disaster_reports/print', [DisasterReportController::class,'print'])->name('disaster_reports.print');
 Route::resource('disaster_reports', DisasterReportController::class);
+
 
 Route::prefix('user')->middleware(['auth'])->name('user.')->group(function () {
     // User dashboard view
