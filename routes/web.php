@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 // Earthquakes
 Route::get('earthquakes/print', [EarthquakeController::class,'print'])->name('earthquakes.print');
 Route::resource('earthquakes', EarthquakeController::class);
+
 Route::resource('accountroles', AccountRoleController::class);
 
 // Winds

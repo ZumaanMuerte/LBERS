@@ -1,24 +1,24 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight">
+        <h2 class="font-semibold text-xl text-black leading-tight">
             {{ __('Account List') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 p-4">
         <div class="bg-white shadow rounded-lg p-4">
             <div class="flex-grow bg-white rounded-md m-4 p-6 shadow-lg overflow-y-auto">
 
                 <div class="mb-4 flex gap-2">
                     <form method="GET" action="" class="mb-4">
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search account..." class="border rounded px-4 py-1 w-50%">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search account..." class="border rounded px-4 py-1 w-100%">
                         <button type="submit" class="bg-blue-500 text-black px-4 py-1 rounded hover:bg-blue-600">Search</button>
                     </form>
                 </div>
 
 
-                <table class="w-full text-left border-t border-gray-200">
-                    <thead class="bg-indigo-900 text-wh     ite">
+                <table class="w-full text-left border-t border-gray-200 mb-4">
+                    <thead class="bg-indigo-900 text-black">
                         <tr>
                             <th class="p-2">Account ID</th>
                             <th class="p-2">Role</th>
@@ -29,7 +29,7 @@
                     </thead>
                     <tbody>
                         @foreach($accounts as $account)
-                        <tr class="border-b hover:bg-gray-100">
+                        <tr class="border-b hover:bg-gray-300">
                             <td class="p-2">{{ $account->id }}</td>
                             <td class="p-2">{{ $account->role }}</td>
                             <td class="p-2 flex items-center gap-2">
@@ -43,11 +43,11 @@
                             <td class="p-2">{{ $account->email }}</td>
                             <td class="p-2 flex gap-2">
                                 <button onclick="openEditModal({{ $account->id }}, '{{ $account->role }}')"
-                                        class="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded">Edit</button>
-                                <form action="{{ route('account.destroy', $account->id) }}" method="POST">
+                                        class="bg-yellow-500 hover:bg-yellow-600 text-black py-1 px-2 rounded">Edit</button>
+                                <form action="{{ route('accountroles.destroy', $account->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded">Delete</button>
+                                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-black py-1 px-2 rounded">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -55,7 +55,7 @@
                     </tbody>
                 </table>
                 <div class="mt-4">
-                    {{$accounts->links() }}
+                    {{ $accounts->withQueryString()->links() }}
                 </div>
             </div>
         </div>
@@ -81,8 +81,8 @@
                     @endauth
 
                     <div class="flex justify-end gap-2 mt-4">
-                        <button type="button" onclick="closeEditModal()" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
-                        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Update</button>
+                        <button type="button" onclick="closeEditModal()" class="bg-red-500 text-black px-4 py-2 rounded">Cancel</button>
+                        <button type="submit" class="bg-green-500 text-black px-4 py-2 rounded">Update</button>
                     </div>
                 </form>
             </div>
@@ -92,7 +92,7 @@
     <script>
         function openEditModal(id, currentRole) {
             const form = document.getElementById('editForm');
-            form.action = `/account/${id}`;
+            form.action = `/accountroles/${id}`;
             form.querySelector('[name="role"]').value = currentRole;
             document.getElementById('editModal').classList.remove('hidden');
         }

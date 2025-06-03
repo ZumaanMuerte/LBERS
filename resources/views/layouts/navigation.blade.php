@@ -16,8 +16,8 @@
                         <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.accountrole')" :active="request()->routeIs('admin.accountrole')">
-                            {{ __('Account Roles') }}
+                        <x-nav-link :href="route('accountroles.index')" :active="request()->routeIs('accountroles.*')">
+                            {{ __('Manage Accounts') }}
                         </x-nav-link>
                         <x-nav-link :href="route('earthquakes.index')" :active="request()->routeIs('earthquakes.*')">
                             {{ __('Earthquakes') }}
