@@ -9,6 +9,10 @@ class Earthquake extends Model
     //
     use HasFactory;
     protected $fillable = ['date', 'location', 'intensity_scale'];
+    protected $casts = [
+    'date' => 'date',
+];
+
      public function disasterReports()
     {
         return $this->hasMany(DisasterReport::class, 'disaster_id')

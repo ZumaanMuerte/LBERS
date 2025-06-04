@@ -5,7 +5,7 @@
             <div>
     <form method="GET" class="mb-4">
                     <input type="text" name="search" placeholder="Search by location or signal" value="{{ request('search') }}" class="border p-2 rounded w-50%">
-                    <button type="submit" class="bg-gray-600 text-black px-4 py-2 rounded">Search</button>
+                    <button type="submit" class="bg-gray-600 text- px-4 py-2 rounded">Search</button>
                 </form>
 
             </div>
@@ -22,8 +22,8 @@
         </div>
 
 
-        <table class="w-full table-auto border-collapse bg-white">
-            <thead class="bg-gray-100">
+        <table class="w-full table-auto border-collapse bg-white ">
+            <thead class="bg-indigo-900 text-white text-center">
                 <tr>
                     <th class="border px-4 py-2">Date</th>
                     <th class="border px-4 py-2">Location</th>
@@ -34,10 +34,10 @@
             <tbody>
                 @foreach($winds as $wind)
                     <tr>
-                        <td class="border px-4 py-2">{{ $wind->date }}</td>
-                        <td class="border px-4 py-2">{{ $wind->location }}</td>
-                        <td class="border px-4 py-2">{{ $wind->wind_signal }}</td>
-                        <td class="border px-4 py-2">
+                        <td class="border px-4 py-2 whitespace-nowrap text-sm text-gray-900 text-center">{{ $wind->date }}</td>
+                        <td class="border px-4 py-2 whitespace-nowrap text-sm text-gray-900 text-center">{{ $wind->location }}</td>
+                        <td class="border px-4 py-2 whitespace-nowrap text-sm text-gray-900 text-center">{{ $wind->wind_signal }}</td>
+                        <td class="border px-4 py-2 whitespace-nowrap text-sm text-gray-900 text-center">
                             <div class="flex space-x-2">
                                 <button class="bg-grey-600 text-black px-2 py-1 rounded hover:bg-black-900">
                                 <a href="{{ route('winds.edit', $wind) }}" class="bg-green-700 text-black px-2 py-1 rounded hover:bg-green-900">Edit</a>
@@ -45,7 +45,7 @@
                                 <form action="{{ route('winds.destroy', $wind) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="bg-red-600 text-black px-2 py-1 rounded hover:bg-red-800">Delete</button>
+                                    <button type="submit" class="bg-red-600 text-black px-2 py-1 rounded hover:bg-red-800">Delete</button>
                                 </form>
                             </div>
                         </td>

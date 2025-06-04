@@ -11,8 +11,15 @@ class DisasterReport extends Model
         'disaster_type',
         'date',
         'location',
-        'damage_status'
+        'damage_status',
+        'damage_report',
+        'reported_by',
+        'reported_at',
     ];
+    protected $dates = [
+        'reported_at',
+    ];
+
 
     public function disaster()
     {
@@ -26,5 +33,10 @@ class DisasterReport extends Model
 
         return null;
     }
-}
 
+    // Relation to the staff user who submitted the report
+    public function reporter()
+    {
+        return $this->belongsTo(User::class, 'reported_by');
+    }
+}

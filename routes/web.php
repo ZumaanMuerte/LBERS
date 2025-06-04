@@ -62,6 +62,10 @@ Route::resource('winds', WindController::class);
 
 // Disaster Reports
 Route::get('disaster_reports/print', [DisasterReportController::class,'print'])->name('disaster_reports.print');
+Route::get('/staff/disasters', [DisasterReportController::class, 'showDisastersForReporting'])->name('staff.disasters');
+Route::post('/staff/disasters/{disasterType}/{disasterId}/report', [DisasterReportController::class, 'submitReport'])->name('staff.disasters.report');
+Route::get('/staff/reports', [DisasterReportController::class, 'showSubmittedReports'])->name('staff.reports');
+Route::get('/admin/disaster-reports', [DisasterReportController::class, 'adminReports'])->name('admin.disaster_reports');
 Route::resource('disaster_reports', DisasterReportController::class);
 
 

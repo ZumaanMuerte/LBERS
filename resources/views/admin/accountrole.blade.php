@@ -17,31 +17,31 @@
                 </div>
 
 
-                <table class="w-full text-left border-t border-gray-200 mb-4">
-                    <thead class="bg-indigo-900 text-black">
+                <table class="w-full table-auto border-collapse bg-white">
+                    <thead class="bg-indigo-900 text-white text-center">
                         <tr>
-                            <th class="p-2">Account ID</th>
-                            <th class="p-2">Role</th>
-                            <th class="p-2">Name</th>
-                            <th class="p-2">Email Address</th>
-                            <th class="p-2">Action</th>
+                            <th class="border px-4 p-2">Account ID</th>
+                            <th class="border px-4 p-2">Role</th>
+                            <th class="border px-4 p-2">Name</th>
+                            <th class="border px-4 p-2">Email Address</th>
+                            <th class="border px-4 p-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($accounts as $account)
-                        <tr class="border-b hover:bg-gray-300">
-                            <td class="p-2">{{ $account->id }}</td>
-                            <td class="p-2">{{ $account->role }}</td>
-                            <td class="p-2 flex items-center gap-2">
+                        <tr class="odd:bg-gray-400 even:bg-grey-100 px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                            <td class="p-2 border px-4 py-2 whitespace-nowrap text-sm text-gray-900 text-center">{{ $account->id }}</td>
+                            <td class="p-2 border px-4 py-2 whitespace-nowrap text-sm text-gray-900 text-center">{{ $account->role }}</td>
+                            <td class="p-2 pl-16 flex gap-2 border px-4 py-2 whitespace-nowrap text-sm text-gray-900">
                                 @if($account->avatar)
                                     <img src="{{ asset('storage/' . $account->avatar) }}" alt="Avatar" class="w-6 h-6 rounded-full object-cover">
                                 @else
                                     <img src="{{ asset('images/default-profile.png') }}" alt="Default Avatar" class="w-6 h-6 rounded-full object-cover">
                                 @endif
-                                {{ $account->name }}
+                                <span class="align-middle">{{ $account->name }}</span>
                             </td>
-                            <td class="p-2">{{ $account->email }}</td>
-                            <td class="p-2 flex gap-2">
+                            <td class="p-2x border px-4 py-2 whitespace-nowrap text-sm text-gray-900 text-center">{{ $account->email }}</td>
+                            <td class="p-2 flex gap-2 border px-4 py-2 whitespace-nowrap text-sm text-gray-900 text-center">
                                 <button onclick="openEditModal({{ $account->id }}, '{{ $account->role }}')"
                                         class="bg-yellow-500 hover:bg-yellow-600 text-black py-1 px-2 rounded">Edit</button>
                                 <form action="{{ route('accountroles.destroy', $account->id) }}" method="POST">
@@ -54,6 +54,7 @@
                         @endforeach
                     </tbody>
                 </table>
+
                 <div class="mt-4">
                     {{ $accounts->withQueryString()->links() }}
                 </div>
